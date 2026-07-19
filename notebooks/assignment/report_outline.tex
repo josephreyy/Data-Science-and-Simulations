@@ -1,0 +1,72 @@
+Assignment 2 report outline
+
+Constraints (from assignment2_description.pdf):
+- Single PDF per team (not one per member).
+- Minimum 2 pages, maximum 6 pages.
+- Must include the necessary data and plots to support each answer, not just prose.
+- Submit by July 26, 2026, by email to apontec@mpip-mainz.mpg.de.
+- State whether a grade (1-6) or a passed/failed confirmation is needed.
+
+Header
+- Matrikel-Nr 1, Matrikel-Nr 2.
+- Grade vs. passed/failed choice.
+(a few lines, not a full page)
+
+Section 1. Setup summary (~0.25 page)
+- One paragraph: three force fields (OPLS-AA/L+SPC, GROMOS96 43a1+SPC, GRAPPA on
+  AMBER99SB-ILDN/TIP3P topology), each extended to 2 ns.
+- Note what was kept identical across runs for a fair comparison: dt = 0.002 ps, Berendsen
+  thermostat, constraint scheme, ion neutralization by total charge (see
+  assignment2_method_clarifications.tex, Q3-Q5).
+
+Section 2. General outcome -> Question 1 (~0.5 page)
+- Number of integration steps for the 2 ns run (same for all three force fields).
+- Table: protein-atom count and full-system atom count per force field (from
+  notebooks/assignment/practicalMD.ipynb, Part D.3, `outcome_df`); highlight the GROMOS
+  united-atom reduction relative to OPLS-AA.
+- Table or bar chart: performance (ns/day) per force field and speed-up relative to OPLS-AA.
+
+Section 3. Structural stability: RMSD and radius of gyration -> Question 2 (~1 page)
+- RMSD and Rg overlay figure across the three force fields (whole-protein AND backbone/Ca
+  selections side by side, `stability_summary` / the 2x2 overlay figure in the notebook).
+- Short discussion of whether the atom-selection choice (whole protein vs. backbone/Ca)
+  changes the stability picture (clarification Q1).
+
+Section 4. Flexibility: RMSF -> Question 3 (~1 page)
+- RMSF overlay figure (per-residue, backbone) across the three force fields.
+- Table of the residues with the largest RMSF change relative to OPLS-AA
+  (`rmsf_diff_df`, top 5 per force field).
+- One PyMOL snapshot per force field of interest, colored by b-factor (RMSF), to visually
+  confirm affected regions are loops rather than secondary structure.
+- Explanation of why GROMOS/GRAPPA might change flexibility at those residues, and how the
+  hypothesis was cross-checked (PyMOL inspection, correlation with RMSD/SASA, caveat about
+  single-trajectory statistics - clarification Q6/Q7).
+
+Section 5. Potential energy -> Question 4 (~0.5 page)
+- Potential energy overlay figure across the three force fields.
+- Discussion: equilibration behavior, fluctuation magnitude; explicit caveat that absolute
+  potential energy values are not comparable across force fields with different functional
+  forms/reference points - focus on convergence and fluctuation, not absolute numbers.
+
+Section 6. Solvent-accessible surface area -> Question 5 (~0.75 page)
+- Total SASA + hydrophobic/hydrophilic split, per force field (the 1x3 small-multiples
+  figure in the notebook).
+- Hydrophobic-fraction table (`sasa_summary`) and discussion of any force field with a
+  distinctly different exposed hydrophobic fraction.
+- One PyMOL snapshot if a notable hydrophobic-patch difference is found (clarification Q8).
+
+Section 7. Discussion: why compare force fields? -> Question 6 (~0.25 page)
+- Short conceptual paragraph, not tied to a specific figure.
+
+Section 8. Discussion: how can machine learning improve force fields? -> Question 7 (~0.25 page)
+- Short conceptual paragraph, grounded in what was actually observed for GRAPPA vs. the two
+  classical force fields in Sections 2-6.
+
+References
+- Original MD practical (Aponte-Santamaria / de Groot).
+- Force field papers (OPLS-AA/L, GROMOS, GRAPPA - see References section of
+  notebooks/assignment/practicalMD.ipynb).
+
+Page budget check: Sections 2, 7, 8 are kept compact (table/bar chart or one short paragraph
+each) so Sections 3-4 (the two questions needing the richest supporting figures) can use the
+most space, while staying within the 6-page maximum.
