@@ -21,16 +21,28 @@ Section 1. Setup summary (~0.25 page)
 
 Section 2. General outcome -> Question 1 (~0.5 page)
 - Number of integration steps for the 2 ns run (same for all three force fields).
-- Table: protein-atom count and full-system atom count per force field (from
-  notebooks/assignment/practicalMD.ipynb, Part D.3, `outcome_df`); highlight the GROMOS
-  united-atom reduction relative to OPLS-AA.
-- Table or bar chart: performance (ns/day) per force field and speed-up relative to OPLS-AA.
+- MAIN united-atom comparison = the PROTEIN-ATOM difference OPLS-AA vs. GROMOS
+  (`outcome_df["protein_atoms_saved_vs_OPLS"]` in Part D.3). This is the clean number that
+  isolates the united-atom effect (CH2/CH3 merged into single particles) and is the one to
+  quote as the answer to "how many particles less".
+- The full-SYSTEM atom count (`n_atoms_total`) is water-count-dependent: each force field is
+  solvated and neutralized independently (and GRAPPA uses TIP3P vs. SPC), so the system total
+  mixes the united-atom effect with run-to-run solvent differences. Report it only as context,
+  with that caveat stated explicitly - do NOT quote the system-total difference as the
+  united-atom answer.
+- One-line sub-item for context: report the per-run water and ion counts (from the new
+  system-composition table in Part D.3) so the reader can see where any system-total difference
+  comes from.
+- Table or bar chart: performance (ns/day) per force field and speed-up relative to OPLS-AA;
+  connect the speed-up back to the protein-atom (and total-particle) reduction.
 
 Section 3. Structural stability: RMSD and radius of gyration -> Question 2 (~1 page)
 - RMSD and Rg overlay figure across the three force fields (whole-protein AND backbone/Ca
   selections side by side, `stability_summary` / the 2x2 overlay figure in the notebook).
-- Short discussion of whether the atom-selection choice (whole protein vs. backbone/Ca)
-  changes the stability picture (clarification Q1).
+- REQUIRED sensitivity comment (clarification Q1): explicitly state whether the whole-protein
+  vs. backbone/Ca selection changes the stability conclusion (e.g. solvent-exposed side chains
+  typically inflate whole-protein RMSD relative to backbone/Ca). One or two sentences; this is
+  a graded clarification point, do not omit it.
 
 Section 4. Flexibility: RMSF -> Question 3 (~1 page)
 - RMSF overlay figure (per-residue, backbone) across the three force fields.
@@ -41,12 +53,24 @@ Section 4. Flexibility: RMSF -> Question 3 (~1 page)
 - Explanation of why GROMOS/GRAPPA might change flexibility at those residues, and how the
   hypothesis was cross-checked (PyMOL inspection, correlation with RMSD/SASA, caveat about
   single-trajectory statistics - clarification Q6/Q7).
+- RMSF here is computed on the BACKBONE (consistent with the whole-protein vs. backbone/Ca
+  selection discussion in Section 3); note this selection basis so the flexibility claims are
+  comparable to the RMSD/Rg picture and not conflated with side-chain motion.
 
 Section 5. Potential energy -> Question 4 (~0.5 page)
-- Potential energy overlay figure across the three force fields.
+- Potential energy overlay figure across the three force fields (total Potential).
 - Discussion: equilibration behavior, fluctuation magnitude; explicit caveat that absolute
   potential energy values are not comparable across force fields with different functional
-  forms/reference points - focus on convergence and fluctuation, not absolute numbers.
+  forms/reference points AND different system composition (water count/model) - focus on
+  convergence and fluctuation, not absolute numbers.
+- Support the "focus on relaxation, not absolute value" point with the additional, more
+  defensible cross-force-field metric now computed in Part D.6 (protein-restricted /
+  per-atom-normalized energy term), rather than comparing raw total Potential across FFs.
+- V-rescale vs. Berendsen caveat (clarification Q4): note that the Berendsen thermostat was
+  kept for strict consistency with the tutorial protocol, but that V-rescale would be the more
+  rigorous choice for canonical (NVT) sampling in longer production runs. One sentence; this is
+  an agreed clarification point and fits naturally in the energy/equilibration discussion (or
+  in Section 1 setup - place it in whichever reads better, but include it).
 
 Section 6. Solvent-accessible surface area -> Question 5 (~0.75 page)
 - Total SASA + hydrophobic/hydrophilic split, per force field (the 1x3 small-multiples
