@@ -1,0 +1,30 @@
+Methodological clarification questions and answers
+Q1. Should RMSD and radius of gyration be computed on the whole protein, backbone atoms only, or Cα atoms?
+A1. We will compute RMSD and radius of gyration for both the whole protein and the backbone/Cα subset, and then compare the differences between these choices to assess how sensitive our conclusions are to the atom selection.
+
+Q2. For the “particles” comparison between OPLS-AA and GROMOS, does this refer to protein atoms only, or the entire system including water and ions?
+A2. We will primarily focus on the protein as the object of comparison between force fields, but we will also inspect the full system (including water and ions) to contextualize any differences in the number and type of particles represented by each force field.
+
+Q3. Does the counter-ion neutralization (Na⁺/Cl⁻ addition) need to be reproduced identically across all three force fields, or can ion placement vary between runs?
+A3. Ion neutralization will be performed consistently across all three force fields in terms of total charge and ion count, while allowing minor variations in individual ion positions between runs; we will document this and treat it as part of the stochastic variability of the setup.
+
+Q4. Should the Berendsen thermostat be kept as-is for consistency across all three simulations, or is switching to V-rescale preferred?
+A4. For this assignment we will retain the Berendsen thermostat across all three simulations to maintain strict consistency with the original tutorial protocol, while explicitly discussing in the report that V-rescale would be the more rigorous choice for canonical sampling in longer production runs.
+
+Q5. Should the constraints setting (all-bonds vs h-bonds, as noted in the notebook) be corrected before extending to 2 ns, given that it affects both accuracy and performance?
+A5. We will keep the constraint settings consistent with the original practical for all force fields in the main 2 ns runs, and optionally explore corrected constraint schemes as a bonus comparison, clearly separating these exploratory runs from the main performance and accuracy evaluation.
+
+Q6. Is a single simulation run per force field sufficient, or should reproducibility and convergence be checked with multiple seeds/replicates?
+A6. We will perform one main simulation per force field and extend each to at least 2 ns, focusing on careful analysis of these trajectories; where feasible, we will comment qualitatively on expected variability and convergence, but full multi-replicate statistics are treated as beyond the core scope of this assignment.
+
+Q7. For the RMSF flexibility question, is a residue-by-residue quantitative comparison expected, or is a qualitative summary sufficient?
+A7. We will compute residue-wise RMSF values and visualize flexibility patterns mapped onto the 3D structure (e.g. in PyMOL), then provide a concise, qualitative description of the main flexible regions rather than an exhaustive residue-by-residue listing.
+
+Q8. How rigorous should the SASA/hydrophobic analysis be — total SASA only, or a per-residue hydrophobic patch breakdown?
+A8. We will report total solvent-accessible surface area for the protein and complement this with a qualitative inspection of hydrophobic versus hydrophilic surface regions, highlighting distinct patches where the different force fields produce notable differences.
+
+Q9. Is any additional equilibration step required before the 2 ns production run, or is directly extending the existing protocol acceptable?
+A9. We will follow the existing equilibration protocol provided in the practical and directly extend it to a 2 ns production run, while optionally adding shorter additional equilibration segments as a bonus test if time and resources permit.
+
+Q10. Is PyMOL-based visual inspection expected to appear in the report, or is it only for qualitative sanity checks?
+A10. PyMOL will primarily be used for qualitative sanity checks (e.g. visual comparison of conformations), but we will include a small number of representative snapshots in the report to document key structural differences observed between force fields.
