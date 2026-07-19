@@ -1,11 +1,11 @@
 # Data Science and Simulations – Assignment 2
 
-This repository contains materials for Assignment 2 of the *Data Science and Simulations* course. The project focuses on the comparison of molecular dynamics simulations performed with different force fields and supports both analysis work and report writing.[web:120]
+This repository contains materials for Assignment 2 of the *Data Science and Simulations* course. The project focuses on the comparison of molecular dynamics simulations performed with different force fields and supports both analysis work and report writing.
 
 ## Repository purpose
 
 The repository is currently organized as a notebook-first project.  
-At this stage, most of the work is stored in Jupyter notebooks, while a more formal structure with dedicated `src/`, `data/`, and `results/` folders may be added later as the project becomes more mature.[web:126][web:135]
+At this stage, most of the work is stored in Jupyter notebooks, while a more formal structure with dedicated `src/`, `data/`, and `results/` folders may be added later as the project becomes more mature.
 
 ## Main working files
 
@@ -41,7 +41,7 @@ ds-simulations-assignment2/
 └── archive/
 ```
 
-This structure separates the active assignment notebook from supplementary notebooks and background materials, which is a practical way to keep notebook-heavy repositories understandable and maintainable.[web:124][web:135]
+This structure separates the active assignment notebook from supplementary notebooks and background materials, which is a practical way to keep notebook-heavy repositories understandable and maintainable.
 
 ## Folder descriptions
 
@@ -72,7 +72,7 @@ Reference notebooks and lecture materials may be consulted for ideas, background
 ## Notes on repository status
 
 This repository is still in an early working phase.  
-At the moment, it mainly contains notebooks and supporting documents. If the project grows, analysis code may later be extracted into reusable Python scripts or modules, and outputs may later be organized into separate `data/` and `results/` directories.[web:126][web:135]
+At the moment, it mainly contains notebooks and supporting documents. If the project grows, analysis code may later be extracted into reusable Python scripts or modules, and outputs may later be organized into separate `data/` and `results/` directories.
 
 ## Suggested usage with Claude Code
 
@@ -92,7 +92,7 @@ Suggested naming style for notebooks:
 - `reference_md_rmsd_rmsf_example.ipynb`
 - `reference_forcefield_background.ipynb`
 
-Clear and descriptive file names improve readability and repository navigation, especially in notebook-heavy projects.[web:124][web:135]
+Clear and descriptive file names improve readability and repository navigation, especially in notebook-heavy projects.
 
 ## Future extensions
 
@@ -102,4 +102,4 @@ Possible future additions include:
 - `data/` for structured input files
 - `results/` for exported figures, tables, and processed outputs
 
-For now, the notebook-first structure is sufficient for the current stage of the project.[web:126][web:135]
+For now, the notebook-first structure is sufficient for the current stage of the project.
